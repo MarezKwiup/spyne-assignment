@@ -1,44 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactPlayer from "react-player";
 
-const VideoPlayer = ({ url, onPlay, onPause,onChangeTime }) => {
-  const [player, setPlayer] = useState(null);
+const VideoPlayer = ({ url, onPlay, onPause, onChangeTime }) => {
+  const playerRef = useRef(null);
 
   useEffect(() => {
-    if (url) {
-      setPlayer(new ReactPlayer(url));
-    }
+    const updateCurrentTime = () => {
+      if (playerRef.current) {
+        onChangeTime(playerRef.current.getCurrentTime());
+      }
+    };
 
-  }, [url]);
+    const interval = setInterval(updateCurrentTime, 100);
 
-  useEffect(()=>{
-    const updateCurrentTime = () =>{
-        if(player){
-            //console.log("Current time is :h1 ",player.getCurrentTime());
-            onChangeTime(player.getCurrentTime);
-        }
-    }
+    return () => clearInterval(interval);
+  }, [onChangeTime]);
 
-    console.log("Video ref is : ",player);
-    
-    const interval=setInterval(updateCurrentTime,100);
-
-    return ()=>clearInterval(interval);
-  },[player])
-
-  const handlePlay = () => onPlay && onPlay();
-  const handlePause = () => onPause && onPause();
   return (
     <div className="video-player">
-      {player && (
-        <ReactPlayer
-          ref={setPlayer}
-          url={url}
-          controls
-          onPlay={handlePlay}
-          onPause={handlePause}
-        />
-      )}
+      <ReactPlayer
+        ref={playerRef}
+        url={url}
+        controls
+        onPlay={onPlay}
+        onPause={onPause}
+      />
     </div>
   );
 };

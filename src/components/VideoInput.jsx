@@ -4,14 +4,20 @@ const VideoInput = ({ onUrlChange }) => {
   const [videoUrl, setVideoUrl] = useState("");
 
   const handleChange = (e) => setVideoUrl(e.target.value);
+  const handleSetUrl = () => onUrlChange(videoUrl);
+
   return (
-    <input
-      type="text"
-      placeholder="Enter Video URL"
-      value={videoUrl}
-      onChange={handleChange}
-      onBlur={() => onUrlChange(videoUrl)}
-    />
+    <div>
+      <label htmlFor="videoUrl">Add video URL</label>
+      <input
+        type="text"
+        id="videoUrl"
+        placeholder="Enter Video URL"
+        value={videoUrl}
+        onChange={handleChange}
+      />
+      <button onClick={handleSetUrl}>Set URL</button>
+    </div>
   );
 };
 
