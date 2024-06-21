@@ -14,9 +14,6 @@ function App() {
     <>
       <Header/>
       <VideoCaptioner/>
-      {/* <VideoInput/>
-      <CaptionInput/>
-      <VideoPlayer url={videoUrl}/> */}
     </>
   )
 }
