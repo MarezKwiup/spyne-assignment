@@ -38,7 +38,7 @@ const VideoCaptioner = () => {
   
     const handleVideoUrlChange = (url) => {
       setVideoUrl(url);
-      setCaptions([]); // Clear captions when setting a new URL
+      setCaptions([]); 
     };
   
     return (
@@ -58,12 +58,10 @@ const VideoCaptioner = () => {
           </div>
         )}
   
-        {/* Caption Input */}
         <div className="input-container">
           <CaptionInput onCaptionInput={handleCaptionInput} />
         </div>
   
-        {/* Current Caption */}
         {captions.length > 0 && (
           <div className="caption-container">
             <CurrentCaption captions={captions} currentTime={currentTime} />

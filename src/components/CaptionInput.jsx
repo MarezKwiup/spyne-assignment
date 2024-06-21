@@ -8,25 +8,20 @@ function parseCaptions(data) {
 
   for (const line of lines) {
     const parts = line.split(" ");
-    if (parts.length < 3) {
-      isValid = false;
-      errorMessage = "Invalid caption format";
-      break;
-    }
 
     const text = parts.slice(0, -1).join(" ");
     const timeRange = parts[parts.length - 1];
-    const trimmedTimeRange = timeRange.trim().slice(1, -1); // Trim whitespace and remove brackets
+    const trimmedTimeRange = timeRange.trim().slice(1, -1); 
 
     const timeRegex = /^([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])-([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/;
     const match = trimmedTimeRange.match(timeRegex);
 
     if (!match) {
-      return { isValid: false, error: 'Invalid time format.' }; // Handle invalid format
+      return { isValid: false, error: 'Invalid time format.' }; 
     }
 
-    const startTime = parseInt(match[1]) * 60 * 60 + parseInt(match[2]) * 60 + parseInt(match[3]); // Convert to milliseconds
-    const endTime = parseInt(match[4]) * 60 * 60 + parseInt(match[5]) * 60 + parseInt(match[6]); // Convert to milliseconds
+    const startTime = parseInt(match[1]) * 60 * 60 + parseInt(match[2]) * 60 + parseInt(match[3]);
+    const endTime = parseInt(match[4]) * 60 * 60 + parseInt(match[5]) * 60 + parseInt(match[6]);
 
     if (startTime >= endTime) {
       isValid = false;

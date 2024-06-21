@@ -9,13 +9,13 @@
   }
   
   .header-logo {
-    max-width: 150px; /* Adjust the size as needed */
+    max-width: 150px;
     margin-bottom: 10px;
   }
   
   .header-description {
     text-align: center;
     color: #f0f0f0;
-    font-size: 1.2em; /* Adjust the size as needed */
+    font-size: 1.2em;
   }
   
